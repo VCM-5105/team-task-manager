@@ -1,7 +1,6 @@
 {
   "name": "task-manager-backend",
   "version": "1.0.0",
-  "description": "Backend for Task Manager",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
