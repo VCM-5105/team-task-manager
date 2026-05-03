@@ -1,30 +1,27 @@
 const express = require("express");
 const cors = require("cors");
 
-// ✅ Load env
 require("dotenv").config({ path: __dirname + "/.env" });
 
-// ✅ Routes
 const authRoutes = require("./routes/authRoutes");
 const projectRoutes = require("./routes/projectRoutes");
-const taskRoutes = require("./routes/taskRoutes"); // (if you created tasks)
+const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
-// ✅ Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
+
 app.use(express.json());
 
-// ✅ API Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/projects", projectRoutes);   
-app.use("/api/tasks", taskRoutes);         
+app.use("/api/projects", projectRoutes);
+app.use("/api/tasks", taskRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
-
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 const PORT = process.env.PORT || 5000;
 
